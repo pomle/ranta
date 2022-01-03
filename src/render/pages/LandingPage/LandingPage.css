@@ -1,0 +1,29 @@
+.LandingPage {
+  padding: 64px 48px;
+}
+
+.LandingPage .sections {
+  display: grid;
+  grid-gap: 32px;
+}
+
+.LandingPage section.params {
+  display: grid;
+  grid-gap: 32px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.LandingPage section.params .param {
+  background: #eee;
+  display: grid;
+  padding: 32px;
+}
+
+.LandingPage section.summary {
+  background: #eee;
+  padding: 32px;
+}
+
+.LandingPage section.summary .sum {
+  font-size: 48px;
+}
