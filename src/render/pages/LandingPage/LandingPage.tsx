@@ -69,7 +69,7 @@ export default function LandingPage() {
   const nextSalary = findNextSalaryDay(now, now);
   const months = years * 12;
   let sum = 0;
-  for (let month = 1; month < months; month += 1) {
+  for (let month = 1; month <= months; month += 1) {
     const timestamp = nextSalary.plus({ month: month - 1 });
     sum += savings;
 
