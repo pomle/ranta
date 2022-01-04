@@ -99,6 +99,9 @@ export default function LandingPage() {
 
   return (
     <div className="LandingPage">
+      <header>
+        <h1>Kalkyl för sparande med ränta</h1>
+      </header>
       <div className="sections">
         <section className="params">
           <div className="param">
