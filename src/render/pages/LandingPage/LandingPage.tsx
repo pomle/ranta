@@ -162,7 +162,7 @@ export default function LandingPage() {
             <tbody>
               {events.map((event) => {
                 return (
-                  <tr>
+                  <tr key={event.month}>
                     <td>{event.month}</td>
                     <td>{event.timestamp.toLocaleString()}</td>
                     <td>{event.log}</td>
