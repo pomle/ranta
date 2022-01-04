@@ -11,8 +11,6 @@ const currency = new Intl.NumberFormat("sv-SE", {
   currency: "SEK",
 });
 
-const date = new Intl.DateTimeFormat("sv-SE");
-
 const DEFAULT_INTEREST = 6;
 const DEFAULT_SAVINGS = 1000;
 const DEFAULT_YEARS = 30;
