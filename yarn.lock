@@ -1320,6 +1320,11 @@
   resolved "https://registry.yarnpkg.com/@pomle/paths/-/paths-1.2.0.tgz#79cbc16456208c8e045263f9e3fb721a6ff78279"
   integrity sha512-Lw1lfJR8NqH4z0buxpwHP/nw6IRlajgQMDr+h3lsNTlDNHaY9OswS8YaT65KZX2Q9r4E/Eh3PH+i+Jy5vL0fMg==
 
+"@pomle/react-router-paths@^0.0.0-0":
+  version "0.0.0-0"
+  resolved "https://registry.yarnpkg.com/@pomle/react-router-paths/-/react-router-paths-0.0.0-0.tgz#34dbdfdaf372d8d640965f51f70bf328ae447234"
+  integrity sha512-fOoFZg1/rNZofqXeC323HbcJovFOZlaRG0FuKnUtjzRUGIXK+9s/WQF4yA8gkt2EIeEbC6tbHrH7lvDxDXpoPg==
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.0.tgz#9cb1c5146ddd6a4968ad96f209c50c62f92f9879"
