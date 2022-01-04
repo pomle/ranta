@@ -27,3 +27,16 @@
 .LandingPage section.summary .sum {
   font-size: 48px;
 }
+
+.LandingPage .events table {
+  border-collapse: collapse;
+  font-family: monospace;
+}
+
+.LandingPage .events table tr td {
+  padding: 4px 8px;
+}
+
+.LandingPage .events table tr:nth-child(odd) td {
+  background: #eee;
+}

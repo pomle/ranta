@@ -1,13 +1,17 @@
 import React, { useCallback } from "react";
+import { DateTime } from "luxon";
 import { codecs, createQuery } from "@pomle/paths";
 import { useQueryParams } from "@pomle/react-router-paths";
 import Param from "./components/Param";
 import "./LandingPage.css";
+import { findNextSalaryDay } from "../../../lib/date";
 
-var formatter = new Intl.NumberFormat("sv-SE", {
+const currency = new Intl.NumberFormat("sv-SE", {
   style: "currency",
   currency: "SEK",
 });
+
+const date = new Intl.DateTimeFormat("sv-SE");
 
 const DEFAULT_INTEREST = 0.06;
 const DEFAULT_SAVINGS = 1000;
@@ -56,17 +60,26 @@ export default function LandingPage() {
     [setParams]
   );
 
-  const events: { month: number; sum: number; log: React.ReactNode }[] = [];
+  const events: {
+    timestamp: DateTime;
+    month: number;
+    sum: number;
+    log: React.ReactNode;
+  }[] = [];
 
+  const now = DateTime.now();
+  const nextSalary = findNextSalaryDay(now, now);
   const months = years * 12;
   let sum = 0;
-  for (let month = 1; month <= months; month += 1) {
+  for (let month = 1; month < months; month += 1) {
+    const timestamp = nextSalary.plus({ month: month - 1 });
     sum += savings;
 
     events.push({
+      timestamp,
       month,
       sum,
-      log: <>Insättning {formatter.format(savings)}</>,
+      log: <>Insättning {currency.format(savings)}</>,
     });
 
     if (month % 12 === 0) {
@@ -74,9 +87,14 @@ export default function LandingPage() {
       sum += extra;
 
       events.push({
+        timestamp,
         month,
         sum,
-        log: <>Utdelning {formatter.format(extra)}</>,
+        log: (
+          <>
+            Värdestegring {currency.format(extra)} ({interest.toFixed(1)}%)
+          </>
+        ),
       });
     }
   }
@@ -125,20 +143,33 @@ export default function LandingPage() {
         </section>
 
         <section className="summary">
-          <Param caption="Summa" value={formatter.format(sum)} />
+          <Param caption="Summa" value={currency.format(sum)} />
         </section>
 
         <section className="events">
+          <h2>Logg</h2>
+
           <table>
-            {events.map((event) => {
-              return (
-                <tr>
-                  <td>{event.month}</td>
-                  <td>{formatter.format(event.sum)}</td>
-                  <td>{event.log}</td>
-                </tr>
-              );
-            })}
+            <thead>
+              <tr>
+                <th>Månad</th>
+                <th>Datum</th>
+                <th>Händelse</th>
+                <th>Balans</th>
+              </tr>
+            </thead>
+            <tbody>
+              {events.map((event) => {
+                return (
+                  <tr>
+                    <td>{event.month}</td>
+                    <td>{event.timestamp.toLocaleString()}</td>
+                    <td>{event.log}</td>
+                    <td className="balance">{currency.format(event.sum)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </section>
       </div>
